@@ -22,10 +22,16 @@ class get_news():
         if (rescode == 200):
             response_body = response.read()
             res = response_body.decode('utf-8')
-            return res
+            response_fin = json.loads(res)
+            return response_fin
         else:
             print("Error Code : ", rescode)
     
     def to_df(self, response):
-        df = pd.DataFrame({'title' : response['title'], 'link' : response['link'], 'description' : response['description'], 'pubdate' : response['pubDate']})
-        return df
+        res = response['items']
+        df = pd.DataFrame(columns = ['title', 'link', 'description', 'pubdate'])
+        df_list = []
+        for data in res:
+            df_list.append(data)
+        df_con = pd.DataFrame(df_list)
+        return df_con
