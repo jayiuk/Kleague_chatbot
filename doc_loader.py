@@ -9,4 +9,5 @@ class document_loader():
         self.list = list
 
     def url2doc(self):
-        
+        url_list = self.list
+        sul = SeleniumURLLoader(url_list)
