@@ -10,4 +10,6 @@ class document_loader():
 
     def url2doc(self):
         url_list = self.list
-        sul = SeleniumURLLoader(url_list)
+        loader = SeleniumURLLoader(url_list, browser = 'chrome')
+        doc_list = loader.load()
+        return doc_list
