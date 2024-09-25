@@ -2,6 +2,7 @@ import langchain
 import langchain_core
 import langsmith
 from langchain_community.document_loaders import SeleniumURLLoader
+from selenium.webdriver.common.by import By
 
 
 class document_loader():
