@@ -1,22 +1,16 @@
 import langchain
-from langchain_text_splitters import TextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-class split(TextSplitter):
-    def __init__(self, doc_list, overlap, length, chunk_size = None):
-        super(split, self).__init__()
+class split(RecursiveCharacterTextSplitter):
+    def __init__(self, doc_list, overlap, chunk_size):
+        super().__init__(overlap = overlap, chunk_size = chunk_size)
         self.doc_list = doc_list
-        self.overlap = overlap
-        self.length = len(self.doc_list)
-        self.chunk_size = chunk_size
     
-    def __len__(self):
-        l_list = []
-        for doc in self.doc_list:
-            l = len(doc)
-            l_list.append(l)
+    def get_doc_len(self):
+        l_list = [len(doc) for doc in self.doc_list]
         return l_list
 
-    def text_split(self):
-        i = 0
-        for i in self.length:
-            
+    def split_text(self):
+        l_list = self.get_doc_len()
+        doc_list = self.doc_list
+        
