@@ -16,3 +16,5 @@ class split(RecursiveCharacterTextSplitter):
             self.chunk_overlap = self.chunk_size // 4
             overlaped = splitted_doc[-self.chunk_overlap]
             for i in range(self.chunk_size):
+                if len(splitted_doc) < self.chunk_size:
+                    
