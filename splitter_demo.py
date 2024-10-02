@@ -8,13 +8,14 @@ class split(RecursiveCharacterTextSplitter):
 
     def split_text(self):
         chunked_list = []
-        i = 0
         doc_list = [doc.page_content for doc in self.doc_list]
         for doc in doc_list:
-            splitted_doc = doc.split("\n\n")
+            splitted_doc = doc.split('\n\n')
             self.chunk_size = len(splitted_doc)
-            self.chunk_overlap = self.chunk_size // 4
-            overlaped = splitted_doc[-self.chunk_overlap]
-            for i in range(self.chunk_size):
-                if len(splitted_doc) < self.chunk_size:
+            self.chunk_overlap = self.chunk_size // 3
+            for chunked_doc in splitted_doc:
+                overlaped = splitted_doc[-self.chunk_overlap]
+                
+            chunked_list.append(splitted_doc)
+        return chunked_list
                     
